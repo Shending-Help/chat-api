@@ -1,16 +1,13 @@
-version: "3.8"
+version: '3.9'
+
 services:
-  postgres_db:
-    image: postgres:14.1-alpine
-    restart: always
+  postgres:
+    image: postgres:14-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ~/apps/postgres:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=12345678
-      - POSTGRES_USER=chat-app
-      - POSTGRES_DB=chat-app
-    ports:
-      - "5432:5432"
-    volumes:
-      - db:/var/lib/postgresql/data
-volumes:
-  db:
-    driver: local
+      - POSTGRES_USER=chat_app_user
+      - POSTGRES_DB=chat_app
